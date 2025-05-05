@@ -22,7 +22,7 @@ public class AuthOrchestratorService {
 	}
 
 	public UsuarioResponse login(LoginRequest request) {
-		String url = msUsersLoginUrl + "/login";
+		String url = msUsersLoginUrl + "/auth/login";
 		ResponseEntity<UsuarioResponse> response = restTemplate.postForEntity(url, request, UsuarioResponse.class);
 		return response.getBody();
 	}

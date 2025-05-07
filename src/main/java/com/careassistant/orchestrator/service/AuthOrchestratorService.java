@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.careassistant.orchestrator.dto.LoginRequest;
+import com.careassistant.orchestrator.dto.UsuarioRequest;
 import com.careassistant.orchestrator.dto.UsuarioResponse;
 
 @Service
@@ -21,8 +21,8 @@ public class AuthOrchestratorService {
 		this.restTemplate = builder.build();
 	}
 
-	public UsuarioResponse login(LoginRequest request) {
-		String url = msUsersLoginUrl + "/auth/login";
+	public UsuarioResponse login(UsuarioRequest request) {
+		String url = msUsersLoginUrl + "/usuarios";
 		ResponseEntity<UsuarioResponse> response = restTemplate.postForEntity(url, request, UsuarioResponse.class);
 		return response.getBody();
 	}

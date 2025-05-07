@@ -1,6 +1,6 @@
 package com.careassistant.orchestrator.dto;
 
-public class LoginRequest {
+public class UsuarioRequest {
 
 	private String correo;
 	private String contraseña;

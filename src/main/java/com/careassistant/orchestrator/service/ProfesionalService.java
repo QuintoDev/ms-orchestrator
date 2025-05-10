@@ -1,11 +1,12 @@
 package com.careassistant.orchestrator.service;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.careassistant.orchestrator.dto.PacienteResponse;
 import com.careassistant.orchestrator.dto.ProfesionalResponse;
+import com.careassistant.orchestrator.dto.ProfesionalServiceResponse;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,12 +27,29 @@ public class ProfesionalService {
 		ProfesionalResponse[] response = restTemplate.getForObject(url, ProfesionalResponse[].class);
 		return Arrays.asList(response);
 	}
+	
+	public List<ProfesionalServiceResponse> obtenerCitasProfesional(String uuidProfesional) {
+	    String urlCitas = msServicesUrl + "/appointments/" + uuidProfesional + "/professional";
+	    ProfesionalServiceResponse[] citasArray = restTemplate.getForObject(urlCitas, ProfesionalServiceResponse[].class);
+	    if (citasArray == null) return List.of();
 
-	public List<?> obtenerCitasProfesional(String uuidProfesional) {
-		String url = msServicesUrl + "/appointments/" + uuidProfesional + "/professional";
-		ResponseEntity<?> response = restTemplate.getForEntity(url, Object.class);
-		return (List<?>) response.getBody();
+	    for (ProfesionalServiceResponse cita : citasArray) {
+	        String pacienteUuid = cita.getUuidPaciente();
+
+	        try {
+	            String urlPaciente = msUsersUrl + "/users/" + pacienteUuid;
+	            PacienteResponse paciente = restTemplate.getForObject(urlPaciente, PacienteResponse.class);
+	            cita.setPaciente(paciente);
+	        } catch (Exception e) {
+	            System.out.println("Error obteniendo paciente " + pacienteUuid + ": " + e.getMessage());
+	        }
+	    }
+
+	    return Arrays.asList(citasArray);
 	}
+
+
+
 
 	public void confirmarCita(String id) {
 		String url = msServicesUrl + "/appointments/" + id + "/confirm";

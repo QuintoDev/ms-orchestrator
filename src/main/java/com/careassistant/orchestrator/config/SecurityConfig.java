@@ -25,11 +25,16 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login").permitAll().requestMatchers("/searches")
-						.hasRole("PACIENTE").anyRequest().authenticated())
-				.exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
-				.addFilterBefore(new JwtAuthenticationFilter(jwtUtility), UsernamePasswordAuthenticationFilter.class)
-				.build();
+			.authorizeHttpRequests(auth -> auth
+				.requestMatchers("/auth/login").permitAll()
+				.requestMatchers("/searches").hasRole("PACIENTE")
+				.requestMatchers("/appointments/*/professional").hasRole("PROFESIONAL_SALUD")
+				.requestMatchers("/appointments/*/confirm", "/appointments/*/cancel").hasRole("PROFESIONAL_SALUD")
+				.anyRequest().authenticated()
+			)
+			.exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
+			.addFilterBefore(new JwtAuthenticationFilter(jwtUtility), UsernamePasswordAuthenticationFilter.class)
+			.build();
 	}
 
 }

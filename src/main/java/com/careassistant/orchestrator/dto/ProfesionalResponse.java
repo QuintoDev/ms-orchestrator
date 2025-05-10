@@ -1,6 +1,9 @@
 package com.careassistant.orchestrator.dto;
 
+import java.util.UUID;
+
 public class ProfesionalResponse {
+	private UUID id;
 	private String rol;
 	private String nombre;
 	private String especialidad;
@@ -8,6 +11,10 @@ public class ProfesionalResponse {
 	private String correo;
 	private String presentacion;
 	private String disponibilidad;
+	
+	public UUID getId() {
+		return id;
+	}
 
 	public String getRol() {
 		return rol;

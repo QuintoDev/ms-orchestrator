@@ -44,6 +44,10 @@ public class PacienteServiceResponse {
 		return resumen;
 	}
 
+	public void setResumen(String resumen) {
+		this.resumen = resumen;
+	}
+
 	public String getUbicacion() {
 		return ubicacion;
 	}

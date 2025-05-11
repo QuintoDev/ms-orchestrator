@@ -14,6 +14,11 @@
 			"name": "jwt.secret",
 			"type": "java.lang.String",
 			"description": "A description for 'jwt.secret'"
+		},
+		{
+			"name": "aes.key",
+			"type": "java.lang.String",
+			"description": "A description for 'aes.key'"
 		}
 	]
 }

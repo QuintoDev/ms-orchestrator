@@ -23,12 +23,12 @@ public class OrchestratorController {
 	}
 
 	@GetMapping("/{uuid}/professional")
-	public ResponseEntity<?> obtenerCitasPorProfesional(@PathVariable String uuid) {
+	public ResponseEntity<?> obtenerCitasPorProfesional(@PathVariable String uuid) throws Exception {
 		return ResponseEntity.ok(profesionalService.obtenerCitasProfesional(uuid));
 	}
 	
 	@GetMapping("/{uuid}/patient")
-	public ResponseEntity<?> obtenerCitasPorPaciente(@PathVariable String uuid) {
+	public ResponseEntity<?> obtenerCitasPorPaciente(@PathVariable String uuid) throws Exception {
 		return ResponseEntity.ok(pacienteService.obtenerCitasPaciente(uuid));
 	}
 

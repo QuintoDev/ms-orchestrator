@@ -6,7 +6,7 @@ public class PacienteResponse {
 	private String apellido;
 	private String parentesco;
 	private Integer edad;
-	private Integer celular;
+	private Long celular;
 
 	public String getNombre() {
 		return nombre;
@@ -24,7 +24,7 @@ public class PacienteResponse {
 		return edad;
 	}
 
-	public Integer getCelular() {
+	public Long getCelular() {
 		return celular;
 	}
 

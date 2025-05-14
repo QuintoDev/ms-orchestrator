@@ -4,7 +4,7 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class ProfesionalServiceResponse {
+public class ServiciosServiceResponse {
 
 	private String id;
 
@@ -16,6 +16,9 @@ public class ProfesionalServiceResponse {
 
 	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
 	private String uuidPaciente;
+
+	@JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+	private String uuidProfesionalSalud;
 
 	private String resumen;
 	private String ubicacion;
@@ -38,6 +41,10 @@ public class ProfesionalServiceResponse {
 
 	public String getUuidPaciente() {
 		return uuidPaciente;
+	}
+
+	public String getUuidProfesionalSalud() {
+		return uuidProfesionalSalud;
 	}
 
 	public String getResumen() {

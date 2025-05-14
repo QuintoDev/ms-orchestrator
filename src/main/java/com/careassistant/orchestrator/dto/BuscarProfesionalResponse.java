@@ -1,23 +1,19 @@
 package com.careassistant.orchestrator.dto;
 
+import java.util.List;
 import java.util.UUID;
 
 public class BuscarProfesionalResponse {
 	private UUID id;
-	private String rol;
 	private String nombre;
 	private String apellido;
 	private String especialidad;
 	private String ciudad;
 	private String presentacion;
-	private String disponibilidad;
+	private List<String> disponibilidad;
 
 	public UUID getId() {
 		return id;
-	}
-
-	public String getRol() {
-		return rol;
 	}
 
 	public String getNombre() {
@@ -40,7 +36,11 @@ public class BuscarProfesionalResponse {
 		return presentacion;
 	}
 
-	public String getDisponibilidad() {
+	public void setPresentacion(String presentacion) {
+		this.presentacion = presentacion;
+	}
+
+	public List<String> getDisponibilidad() {
 		return disponibilidad;
 	}
 

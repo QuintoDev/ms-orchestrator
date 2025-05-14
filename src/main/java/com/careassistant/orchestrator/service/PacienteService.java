@@ -4,10 +4,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.careassistant.orchestrator.dto.PacienteResponse;
 import com.careassistant.orchestrator.dto.PacienteServiceResponse;
 import com.careassistant.orchestrator.dto.ProfesionalResponse;
-import com.careassistant.orchestrator.dto.ProfesionalServiceResponse;
 import com.careassistant.orchestrator.security.AES256Decriptor;
 
 import java.util.Arrays;

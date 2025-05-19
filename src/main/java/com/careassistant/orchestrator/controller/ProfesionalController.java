@@ -13,7 +13,7 @@ import com.careassistant.orchestrator.dto.BuscarProfesionalResponse;
 @RestController
 @RequestMapping("/searches")
 public class ProfesionalController {
-	
+
 	private final ProfesionalService profesionalService;
 
 	public ProfesionalController(ProfesionalService profesionalService) {
@@ -21,7 +21,8 @@ public class ProfesionalController {
 	}
 
 	@GetMapping
-	public List<BuscarProfesionalResponse> buscar(@RequestParam String especialidad, @RequestParam String ciudad) throws Exception {
+	public List<BuscarProfesionalResponse> buscar(@RequestParam String especialidad, @RequestParam String ciudad)
+			throws Exception {
 		return profesionalService.buscarProfesionales(especialidad, ciudad);
 	}
 

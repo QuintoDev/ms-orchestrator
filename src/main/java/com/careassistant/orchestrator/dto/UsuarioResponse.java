@@ -2,10 +2,14 @@ package com.careassistant.orchestrator.dto;
 
 public class UsuarioResponse {
 
+	private String id;
 	private String tipo;
 	private String nombre;
 	private String apellido;
-	private String correo;
+
+	public String getId() {
+		return id;
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -17,10 +21,6 @@ public class UsuarioResponse {
 
 	public String getApellido() {
 		return apellido;
-	}
-
-	public String getCorreo() {
-		return correo;
 	}
 
 }

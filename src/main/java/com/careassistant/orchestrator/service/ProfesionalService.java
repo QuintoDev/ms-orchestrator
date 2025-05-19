@@ -43,8 +43,7 @@ public class ProfesionalService {
 		}
 
 		String urlCitas = msServicesUrl + "/appointments/" + uuidProfesional + "/professional";
-		ServiciosServiceResponse[] citasArray = restTemplate.getForObject(urlCitas,
-				ServiciosServiceResponse[].class);
+		ServiciosServiceResponse[] citasArray = restTemplate.getForObject(urlCitas, ServiciosServiceResponse[].class);
 		if (citasArray == null)
 			return List.of();
 

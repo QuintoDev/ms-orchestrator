@@ -18,7 +18,7 @@ public class JWTUtility {
 
     private Key key;
 
-    private static final long EXPIRATION_MS = 86400000; // 24h
+    private static final long EXPIRATION_MS = 3600000; // 24h
 
     @PostConstruct
     public void init() {

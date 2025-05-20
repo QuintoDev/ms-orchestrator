@@ -31,15 +31,17 @@ public class SecurityConfig {
 				.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login", "/auth/signup").permitAll()
 
+						.requestMatchers("/auth/login", "/auth/signup").permitAll()
+
 						// PACIENTE
-						.requestMatchers("/searches").hasRole("PACIENTE").requestMatchers("/appointments")
-						.hasRole("PACIENTE").requestMatchers("/users/*").hasRole("PACIENTE")
+						.requestMatchers("/searches", "/appointments", "/users/me").hasRole("PACIENTE")
 
 						// PROFESIONAL_SALUD
-						.requestMatchers("/appointments/*/professional").hasRole("PROFESIONAL_SALUD")
-						.requestMatchers("/appointments//confirm", "/appointments//cancel").hasRole("PROFESIONAL_SALUD")
-						.requestMatchers("/users/*").hasRole("PROFESIONAL_SALUD")
+						.requestMatchers("/appointments/*/professional", "/appointments/*/confirm",
+								"/appointments/*/cancel", "/users/me")
+						.hasRole("PROFESIONAL_SALUD")
 
+						// Otros endpoints protegidos
 						.anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
 				.addFilterBefore(new JwtAuthenticationFilter(jwtUtility), UsernamePasswordAuthenticationFilter.class)

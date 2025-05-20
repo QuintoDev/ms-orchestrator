@@ -30,19 +30,11 @@ public class SecurityConfig {
 		return http.cors(cors -> cors.configurationSource(corsConfig.corsConfigurationSource()))
 				.csrf(csrf -> csrf.disable())
 				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login", "/auth/signup").permitAll()
-
 						.requestMatchers("/auth/login", "/auth/signup").permitAll()
-
-						// PACIENTE
 						.requestMatchers("/searches", "/appointments", "/users/me").hasRole("PACIENTE")
-
-						// PROFESIONAL_SALUD
 						.requestMatchers("/appointments/*/professional", "/appointments/*/confirm",
 								"/appointments/*/cancel", "/users/me")
-						.hasRole("PROFESIONAL_SALUD")
-
-						// Otros endpoints protegidos
-						.anyRequest().authenticated())
+						.hasRole("PROFESIONAL_SALUD").anyRequest().authenticated())
 				.exceptionHandling(ex -> ex.authenticationEntryPoint(authenticationEntryPoint))
 				.addFilterBefore(new JwtAuthenticationFilter(jwtUtility), UsernamePasswordAuthenticationFilter.class)
 				.build();

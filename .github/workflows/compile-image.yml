@@ -5,7 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
+  build_jar:
+    name: Build JAR
 
     runs-on: ubuntu-latest
 
@@ -17,12 +18,15 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         cache: maven
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
     - name: Run tests
       run: mvn test
+
     - name: Upload jar as Artifact
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v2.3.1
       with:
         name: ms-orchestrator-1.0.0.jar
         path: target/ms-orchestrator-1.0.0.jar

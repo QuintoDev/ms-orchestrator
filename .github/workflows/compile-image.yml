@@ -31,3 +31,6 @@ jobs:
         name: ms-orchestrator-1.0.0.jar
         path: target/ms-orchestrator-1.0.0.jar
         retention-days: 1
+    
+    - name: List contents of artifact directory
+      run: ls -l target/

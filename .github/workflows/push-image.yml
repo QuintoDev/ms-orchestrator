@@ -34,7 +34,7 @@ jobs:
       - name: Download artifact from Java CI with Maven workflow
         uses: dawidd6/action-download-artifact@v2
         with:
-          name: ms-orchestrator-1.0.0.jar
+          name: ms-orchestrator-0.0.1.jar
           workflow_conclusion: success
           workflow: compile-image.yml
           run_id: ${{ steps.get_run.outputs.run_id }}

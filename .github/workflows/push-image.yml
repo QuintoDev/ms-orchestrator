@@ -26,8 +26,10 @@ jobs:
       - name: Get last successful Java CI with Maven run_id
         id: get_run
         run: |
-          run_id=$(gh run list --repo owner/repo --workflow="Java CI with Maven" --branch=main --event=pull_request --json databaseId,conclusion --jq '[.[] | select(.conclusion == "success")][0].databaseId')
+          run_id=$(gh run list --repo QuintoDev/ms-orchestrator --workflow="Java CI with Maven" --branch=main --event=push --json databaseId,conclusion --jq '[.[] | select(.conclusion == "success")][0].databaseId')
           echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
 
       - name: Download artifact from Java CI with Maven workflow
         uses: actions/download-artifact@v4
@@ -37,7 +39,7 @@ jobs:
           workflow: compile-image.yml
           path: ./artifact
           run-id: ${{ steps.get_run.outputs.run_id }}
-          repository: owner/repo
+          repository: QuintoDev/ms-orchestrator
 
       - name: Build Docker image
         run: |

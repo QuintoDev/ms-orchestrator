@@ -8,7 +8,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: mvp
 
     steps:
     - uses: actions/checkout@v4
@@ -25,6 +24,6 @@ jobs:
     - name: Upload jar as Artifact
       uses: actions/upload-artifact@v3
       with:
-        name: ms-orchestrator
+        name: ms-orchestrator-1.0.0.jar
         path: target/ms-orchestrator-1.0.0.jar
         retention-days: 1

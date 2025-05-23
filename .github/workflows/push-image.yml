@@ -42,11 +42,11 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t ms-orchestrator:1.0.0 ./artifact
+          docker build -t ms-orchestrator:0.0.1 .
 
       - name: Tag Docker image
         run: |
-          docker tag ms-orchestrator:1.0.0 public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}/ms-orchestrator:latest
+          docker tag ms-orchestrator:0.0.1 public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}/ms-orchestrator:latest
 
       - name: Push Docker image to Amazon ECR Public
         run: |

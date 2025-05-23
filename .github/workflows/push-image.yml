@@ -21,9 +21,26 @@ jobs:
     - name: Authenticate Docker to Amazon ECR Public
       run: |
       aws ecr-public get-login-password --region ${{ secrets.AWS_REGION }} | docker login --username AWS --password-stdin public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}
+    
+    - name: Get last successful Java CI with Maven run_id
+      id: get_run
+      run: |
+        run_id=$(gh run list --repo owner/repo --workflow="Java CI with Maven" --branch=main --event=pull_request --json databaseId,conclusion --jq '[.[] | select(.conclusion == "success")][0].databaseId')
+        echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
+
+    - name: Download artifact from Java CI with Maven workflow
+      uses: actions/download-artifact@v4
+      with:
+        name: ms-orchestrator-1.0.0.jar
+        workflow_conclusion: success
+        workflow: compile-image.yml
+        path: ./artifact
+        run-id: ${{ steps.get_run.outputs.run_id }}
+        repository: owner/repo
+
     - name: Build Docker image
       run: |
-      docker build -t ms-orchestrator:1.0.0 .
+        docker build -t ms-orchestrator:1.0.0 ./artifact
     - name: Tag Docker image
       run: |
       docker tag ms-orchestrator:1.0.0 public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}/ms-orchestrator:latest

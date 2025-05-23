@@ -22,7 +22,7 @@ jobs:
     - name: Run tests
       run: mvn test
     - name: Upload jar as Artifact
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v2
       with:
         name: ms-orchestrator-1.0.0.jar
         path: target/ms-orchestrator-1.0.0.jar

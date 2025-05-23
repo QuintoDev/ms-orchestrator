@@ -29,7 +29,7 @@ jobs:
           run_id=$(gh run list --repo QuintoDev/ms-orchestrator --workflow="Java CI with Maven" --branch=main --event=push --json databaseId,conclusion --jq '[.[] | select(.conclusion == "success")][0].databaseId')
           echo "run_id=$run_id" >> "$GITHUB_OUTPUT"
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_GITHUB }}
+          GH_TOKEN: ${{ github.token }}
 
       - name: Download artifact from Java CI with Maven workflow
         uses: actions/download-artifact@v4

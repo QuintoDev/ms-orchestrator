@@ -32,14 +32,13 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       - name: Download artifact from Java CI with Maven workflow
-        uses: actions/download-artifact@v4
+        uses: dawidd6/action-download-artifact@v2
         with:
           name: ms-orchestrator-1.0.0.jar
           workflow_conclusion: success
           workflow: compile-image.yml
-          path: ./artifact
-          run-id: ${{ steps.get_run.outputs.run_id }}
-          repository: QuintoDev/ms-orchestrator
+          run_id: ${{ steps.get_run.outputs.run_id }}
+          github_token: ${{ github.token }}
 
       - name: Build Docker image
         run: |

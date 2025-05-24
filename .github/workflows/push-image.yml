@@ -40,10 +40,6 @@ jobs:
           run_id: ${{ steps.get_run.outputs.run_id }}
           github_token: ${{ github.token }}
 
-      - name: Move artifact to workspace root
-        run: |
-          mv ms-orchestrator-0.0.1.jar ./ms-orchestrator-0.0.1.jar
-
       - name: Build Docker image
         run: |
           docker build -t ms-orchestrator:0.0.1 .
@@ -55,3 +51,7 @@ jobs:
       - name: Push Docker image to Amazon ECR Public
         run: |
           docker push public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}/ms-orchestrator:latest
+
+      - name: Clean workspace
+        run: |
+          rm -rf ./* || true

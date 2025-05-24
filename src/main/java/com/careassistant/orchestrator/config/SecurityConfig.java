@@ -29,7 +29,7 @@ public class SecurityConfig {
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		return http.cors(cors -> cors.configurationSource(corsConfig.corsConfigurationSource()))
 				.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login", "/auth/signup").permitAll()
+				.authorizeHttpRequests(auth -> auth.requestMatchers("/auth/login", "/auth/signup","/actuator/**").permitAll()
 						.requestMatchers("/auth/login", "/auth/signup").permitAll()
 						.requestMatchers("/searches", "/appointments", "/users/me").hasRole("PACIENTE")
 						.requestMatchers("/appointments/*/professional", "/appointments/*/confirm",

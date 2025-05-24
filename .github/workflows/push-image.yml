@@ -12,6 +12,7 @@ jobs:
     environment: mvp
 
     steps:
+      - uses: actions/checkout@v4
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
         with:
@@ -51,7 +52,3 @@ jobs:
       - name: Push Docker image to Amazon ECR Public
         run: |
           docker push public.ecr.aws/${{ secrets.ECR_PUBLIC_ID }}/ms-orchestrator:latest
-
-      - name: Clean workspace
-        run: |
-          rm -rf ./* || true

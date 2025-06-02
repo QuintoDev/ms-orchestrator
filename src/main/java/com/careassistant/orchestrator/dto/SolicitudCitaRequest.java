@@ -33,4 +33,30 @@ public class SolicitudCitaRequest {
 		return ubicacion;
 	}
 
+	public void setUuidProfesionalSalud(String uuidProfesionalSalud) {
+		this.uuidProfesionalSalud = uuidProfesionalSalud;
+	}
+
+	public void setEspecialidad(String especialidad) {
+		this.especialidad = especialidad;
+	}
+
+	public void setFecha(String fecha) {
+		this.fecha = fecha;
+	}
+
+	public void setHora(String hora) {
+		this.hora = hora;
+	}
+
+	public void setResumen(String resumen) {
+		this.resumen = resumen;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+	
+	
+
 }
